@@ -1,0 +1,13 @@
+{
+    "pack": {
+        "id": "final_war",
+        "pack_format": 15,
+        "description": "Adds Quirks from MHA's Final War arc to minecraft via Palladium.",
+        "version": "1.0.0"
+    },
+    "dependencies": {
+        "common": {},
+        "fabric": {},
+        "forge": {}
+    }
+}

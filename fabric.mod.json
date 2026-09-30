@@ -1,0 +1,14 @@
+{
+    "schemaVersion": 1,
+    "authors": [
+        "Callumari",
+        "nuxlox"
+    ],
+    "environment": "*",
+    "id": "final_war",
+    "version": "1.0.0",
+    "name": "Final War",
+    "description": "Adds Quirks from MHA's Final War arc to minecraft via Palladium.",
+    "icon": "logo.png",
+    "license": "All rights reserved"
+}
