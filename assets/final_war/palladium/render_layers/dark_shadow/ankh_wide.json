@@ -1,0 +1,5 @@
+{
+    "type": "palladium:skin_overlay",
+    "render_type": "solid",
+    "texture": "final_war:textures/models/dark_shadow/body_wide.png"
+}

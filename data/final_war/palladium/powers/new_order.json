@@ -1,0 +1,454 @@
+{
+    "name": "New Order",
+    "persistent_data": true,
+    "background": "minecraft:textures/block/white_wool.png",
+    "icon": "minecraft:wither_skeleton_skull",
+    "gui_display_type": "tree",
+    "energy_bars": {
+    "rule": {
+       "max": 2,
+       "color": "#AB1717"
+      }
+    },
+    "abilities": {
+        "new_order": {
+            "type": "palladium:dummy",
+            "icon": "minecraft:blaze_rod",
+            "title": "New Order",
+            "bar_color": "light_gray",
+            "hidden": false,
+            "hidden_in_bar": true,
+            "list_index": 0,
+            "gui_position": "null",
+            "gui_frame_type": "task",
+            "description": "\"This is my New Order!\" You now have the Quirk of New Order, which allows you to impose rules on anything you touch! You can have a maximum of 2 rules at a time.",
+            "conditions": {
+                "enabling": [],
+                "unlocking": []
+            }
+        },
+        "maximum": {
+            "type": "palladium:dummy",
+            "icon": "minecraft:blaze_rod",
+            "title": "New Order: Maximum",
+            "bar_color": "light_gray",
+            "hidden": false,
+            "hidden_in_bar": false,
+            "list_index": 0,
+            "gui_position": "null",
+            "gui_frame_type": "task",
+            "description": "Apply a rule to yourself, increasing your attributes.",
+            "conditions": {
+                "enabling": [
+                                        {
+                                            "type": "palladium:toggle",
+                                            "cooldown": 0,
+                                            "key_type": "key_bind",
+                                            "needs_empty_hand": false,
+                                            "allow_scrolling_when_crouching": true
+                                        }
+                ],
+                "unlocking": [
+                                        {
+                                            "type": "palladium:and",
+                                            "conditions": [
+                                                {
+                                                    "type": "palladium:energy_bar",
+                                                    "power": "final_war:new_order",
+                                                    "energy_bar": "rule",
+                                                    "min": 0,
+                                                    "max": 2
+                                                }
+                                            ]
+                                        }
+                ]
+            }
+        },
+        "maximum_commands": {
+            "type": "palladium:command",
+            "icon": "minecraft:command_block",
+            "title": "maximum commands",
+            "bar_color": "light_gray",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "list_index": 0,
+            "gui_position": "null",
+            "gui_frame_type": "task",
+            "description": "desc",
+            "first_tick_commands": [
+                "/energybar value add @s final_war:new_order rule 1",
+                "/playsound entity.firework_rocket.large_blast master @a[distance=..8] ~ ~1 ~ 1 2",
+                "/particle dust_color_transition 0.8 0.08 0.08 0.4 0.21 0.52 0.85 ^ ^0.4 ^ 0.2 0.4 0.2 0.8 26"
+            ],
+            "last_tick_commands": [
+                "/energybar value subtract @s final_war:new_order rule 1",
+                "/playsound entity.firework_rocket.large_blast master @a[distance=..8] ~ ~1 ~ 1 2",
+                "/particle dust_color_transition 0.8 0.08 0.08 0.4 0.21 0.52 0.85 ^ ^0.4 ^ 0.2 0.4 0.2 0.2 26"
+            ],
+            "commands": [],
+            "conditions": {
+                "enabling": [
+                                        {
+                                            "type": "palladium:ability_enabled",
+                                            "power": "final_war:new_order",
+                                            "ability": "maximum"
+                                        }
+                ],
+                "unlocking": []
+            }
+        },
+        "maximum_effect": {
+            "type": "palladium:command",
+            "icon": "minecraft:command_block",
+            "title": "maximum give effect",
+            "bar_color": "light_gray",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "list_index": 0,
+            "gui_position": "null",
+            "gui_frame_type": "task",
+            "description": "desc",
+            "first_tick_commands": [],
+            "last_tick_commands": [
+                "/effect clear @s takolib:self_rule"
+            ],
+            "commands": [
+                "/effect give @s takolib:self_rule 8 0 true"
+            ],
+            "conditions": {
+                "enabling": [
+                                        {
+                                            "type": "palladium:ability_enabled",
+                                            "power": "final_war:new_order",
+                                            "ability": "maximum"
+                                        }
+                ],
+                "unlocking": []
+            }
+        },
+        "laser": {
+            "type": "palladium:dummy",
+            "icon": "minecraft:blaze_rod",
+            "title": "New Order: Star-Spangled Laser",
+            "bar_color": "light_gray",
+            "hidden": false,
+            "hidden_in_bar": false,
+            "list_index": 1,
+            "gui_position": "null",
+            "gui_frame_type": "task",
+            "description": "Call down a laser and apply a rule to it. You're able to hold it and then fire it whenever you please by right-clicking.",
+            "conditions": {
+                "enabling": [
+                                        {
+                                            "type": "palladium:held",
+                                            "cooldown": 0,
+                                            "key_type": "key_bind",
+                                            "needs_empty_hand": false
+                                        }
+                ],
+                "unlocking": [
+                                        {
+                                            "type": "palladium:and",
+                                            "conditions": [
+                                        {
+                                            "type": "palladium:not",
+                                            "conditions": [
+                                                {
+                                                    "type": "palladium:ability_on_cooldown",
+                                                    "power": "final_war:new_order",
+                                                    "ability": "laser_throw"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "palladium:energy_bar",
+                                            "power": "final_war:new_order",
+                                            "energy_bar": "rule",
+                                            "min": 0,
+                                            "max": 2
+                                        }
+                                    ]
+                                }
+                ]
+            }
+        },
+        "laser_rule": {
+            "type": "palladium:command",
+            "icon": "minecraft:command_block",
+            "title": "laser rule",
+            "bar_color": "light_gray",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "list_index": 1,
+            "gui_position": "null",
+            "gui_frame_type": "task",
+            "description": "desc",
+            "first_tick_commands": [
+                "/energybar value add @s final_war:new_order rule 1",
+                "/playsound entity.player.attack.knockback master @a[distance=..8] ~ ~1 ~ 0.6 2"
+            ],
+            "last_tick_commands": [
+                "/energybar value subtract @s final_war:new_order rule 1"
+            ],
+            "commands": [],
+            "conditions": {
+                "enabling": [
+                                        {
+                                            "type": "palladium:ability_enabled",
+                                            "power": "final_war:new_order",
+                                            "ability": "laser"
+                                        }
+                ],
+                "unlocking": []
+            }
+        },
+        "laser_throw": {
+            "type": "palladium:projectile",
+            "icon": "minecraft:snowball",
+            "title": "laser throw",
+            "bar_color": "light_gray",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "list_index": 1,
+            "gui_position": "null",
+            "gui_frame_type": "task",
+            "description": "desc",
+            "entity_type": "palladium:custom_projectile",
+            "entity_data": {
+                "Damage": 8,
+                "DamageType": "final_war:laser",
+                "SetEntityOnFireSeconds": 0,
+                "Gravity": 0.0,
+                "Lifetime": 30,
+                "CommandOnBlockHit": "/playsound block.beacon.activate master @a[distance=..8] ~ ~1 ~ 1 2",
+                "CommandOnEntityHit": "/playsound block.beacon.activate master @a[distance=..8] ~ ~1 ~ 1 2",
+                "DieOnEntityHit": true,
+                "DieOnBlockHit": true,
+                "Appearances": [
+                    {   "Type": "laser", 
+                        "Thickness": 0.05, 
+                        "Color": "#F8E131" 
+                    },
+                    {
+                        "Type": "particles",
+                        "ParticleType": "minecraft:end_rod",
+                        "Spread": 0.1,
+                        "Amount": 3
+                    },
+                    {
+                        "Type": "trail",
+                        "Trail": "final_war:laser"
+                    }
+                ]
+            },
+            "inaccuracy": 0,
+            "velocity": 1.6,
+            "swinging_arm": "main_arm",
+            "damage_from_player": false,
+            "ignore_player_movement": false,
+            "conditions": {
+                "enabling": [
+                                        {
+                                            "type": "palladium:activation",
+                                            "cooldown": 400,
+                                            "ticks": 1,
+                                            "key_type": "right_click",
+                                            "needs_empty_hand": false,
+                                            "allow_scrolling_when_crouching": true
+                                        }
+                ],
+                "unlocking": [
+                                        {
+                                            "type": "palladium:ability_enabled",
+                                            "power": "final_war:new_order",
+                                            "ability": "laser"
+                                        }
+                ]
+            }
+        },
+        "laser_throw_commands": {
+            "type": "palladium:command",
+            "icon": "minecraft:command_block",
+            "title": "laser throw commands",
+            "bar_color": "light_gray",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "list_index": 1,
+            "gui_position": "null",
+            "gui_frame_type": "task",
+            "description": "desc",
+            "first_tick_commands": [
+                "/playsound entity.player.attack.knockback master @a[distance=..8] ~ ~1 ~ 0.6 2"
+            ],
+            "last_tick_commands": [],
+            "commands": [
+                "/playsound block.beacon.activate master @a[distance=..8] ~ ~1 ~ 1 2"
+            ],
+            "conditions": {
+                "enabling": [
+                                        {
+                                            "type": "palladium:ability_enabled",
+                                            "power": "final_war:new_order",
+                                            "ability": "laser_throw"
+                                        }
+                ],
+                "unlocking": []
+            }
+        },
+        "zero_air": {
+            "type": "palladium:aim",
+            "icon": "minecraft:blaze_rod",
+            "title": "New Order: Zero Air",
+            "bar_color": "light_gray",
+            "hidden": false,
+            "hidden_in_bar": false,
+            "list_index": 2,
+            "gui_position": "null",
+            "gui_frame_type": "task",
+            "description": "Impose a rule on the air ahead of you, creating a vacuum which suffocates and draws in enemies within the radius.",
+            "time": 14,
+            "arm": "both",
+            "conditions": {
+                "enabling": [
+                                        {
+                                            "type": "palladium:activation",
+                                            "cooldown": 0,
+                                            "ticks": 28,
+                                            "key_type": "key_bind",
+                                            "needs_empty_hand": false,
+                                            "allow_scrolling_when_crouching": true
+                                        }
+                ],
+                "unlocking": [
+                                        {
+                                            "type": "palladium:and",
+                                            "conditions": [
+                                                {
+                                                    "type": "palladium:energy_bar",
+                                                    "power": "final_war:new_order",
+                                                    "energy_bar": "rule",
+                                                    "min": 0,
+                                                    "max": 2
+                                                }
+                                            ]
+                                        }
+                ]
+            }
+        },
+        "zero_air_beam": {
+            "type": "palladium:energy_beam",
+            "icon": "minecraft:blaze_rod",
+            "title": "zero air beam",
+            "bar_color": "light_gray",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "list_index": 2,
+            "gui_position": "null",
+            "gui_frame_type": "task",
+            "description": "desc",
+            "energy_beam": "final_war:blank",
+            "damage_type": "null",
+            "damage": 0,
+            "max_distance": 26,
+            "speed": 0.9,
+            "set_on_fire_seconds": 0,
+            "cause_fire": false,
+            "smelt_blocks": false,
+            "commands_on_block_hit": [],
+            "commands_on_entity_hit": [],
+            "conditions": {
+                "enabling": [
+                                        {
+                                            "type": "palladium:ability_ticks",
+                                            "power": "final_war:new_order",
+                                            "ability": "zero_air",
+                                            "min": 22,
+                                            "max": 26
+                                        }
+                ],
+                "unlocking": []
+            }
+        },
+        "reversal": {
+            "type": "palladium:aim",
+            "icon": "minecraft:blaze_rod",
+            "title": "New Order: Reversal",
+            "bar_color": "light_gray",
+            "hidden": false,
+            "hidden_in_bar": false,
+            "list_index": 3,
+            "gui_position": "null",
+            "gui_frame_type": "task",
+            "description": "Reverse negative effects on you into positive ones. Positive effects last for 3 minutes. Only works on Minecraft effects.",
+            "time": 8,
+            "arm": "both",
+            "conditions": {
+                "enabling": [
+                                        {
+                                            "type": "palladium:activation",
+                                            "cooldown": 0,
+                                            "ticks": 12,
+                                            "key_type": "key_bind",
+                                            "needs_empty_hand": false,
+                                            "allow_scrolling_when_crouching": true
+                                        }
+                ],
+                "unlocking": [
+                                        {
+                                            "type": "palladium:and",
+                                            "conditions": [
+                                                {
+                                                    "type": "palladium:energy_bar",
+                                                    "power": "final_war:new_order",
+                                                    "energy_bar": "rule",
+                                                    "min": 0,
+                                                    "max": 2
+                                                }
+                                            ]
+                                        }
+                ]
+            }
+        },
+        "air_titan": {
+            "type": "palladium:aim",
+            "icon": "minecraft:blaze_rod",
+            "title": "New Order: Air Titan",
+            "bar_color": "light_gray",
+            "hidden": false,
+            "hidden_in_bar": false,
+            "list_index": 4,
+            "gui_position": "null",
+            "gui_frame_type": "task",
+            "description": "Shape the air into a huge titan in your image which delivers a 3-hit combo to enemies around you.",
+            "time": 6,
+            "arm": "both",
+            "conditions": {
+                "enabling": [
+                                        {
+                                            "type": "palladium:activation",
+                                            "cooldown": 0,
+                                            "ticks": 48,
+                                            "key_type": "key_bind",
+                                            "needs_empty_hand": false,
+                                            "allow_scrolling_when_crouching": true
+                                        }
+                ],
+                "unlocking": [
+                                        {
+                                            "type": "palladium:and",
+                                            "conditions": [
+                                                {
+                                                    "type": "palladium:energy_bar",
+                                                    "power": "final_war:new_order",
+                                                    "energy_bar": "rule",
+                                                    "min": 0,
+                                                    "max": 2
+                                                }
+                                            ]
+                                        }
+                ]
+            }
+        }
+
+    }
+}
